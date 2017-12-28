@@ -1,4 +1,14 @@
 body{
-    background-image: url('https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr02/2013/3/19/16/anigif_enhanced-buzz-517-1363726677-19.gif');
-    background-size: cover;
+    background-image: url('https://raw.githubusercontent.com/shnick92/week-5-game/master/assets/images/rugrats%20gif.gif');
+    background-size: 75%;
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+}
+
+header{
+	font-family: 'Abril Fatface', cursive;
+	background: #b6acd1;
+	color: white;
+	font-size: 36px;
+	text-align: center;
 }
