@@ -10,10 +10,117 @@
 <body>
 	
 	<div id="quiz"></div>
-	<button id="submit">
+	<button id="submit">Submit Answer</button>
+	<div id="results"></div>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+
+	var quizContainer = $('#quiz');
+	var resultsContainer = $('#results');
+	var answerButton = $('#submit');
+	var questions = [
+	{
+		"question" : "What channel was Rugrats on?",
+		"answers" : {
+			"a" : "Cartoon Network",
+			"b" : "PBS",
+			"c" : "USA",
+			"d" : "Nickelodean",
+		},
+		"correctAnswer" : "d"
+	},
+	{
+		"question" : "Who's slogan was 'We do what Nintendoesn't'?",
+		"answers" : {
+			"a" : "Atari",
+			"b" : "Sega",
+			"c" : "Sony",
+			"d" : "Microsoft",
+		},
+		"correctAnswer" : "b"
+	},
+	{
+		"question" : "Where was 'Jurassic Park' located?",
+		"answers" : {
+			"a" : "Costa Rica",
+			"b" : "Jurassitania",
+			"c" : "Isla Nublar",
+			"d" : "Isla Jurrasic",
+		},
+		"correctAnswer" : "a"
+	},
+	{
+		"question" : "Which cartoon featured a dog and a cat?",
+		"answers" : {
+			"a" : "Rocko's Modern Life",
+			"b" : "Dexter's Lab",
+			"c" : "Ren & Stimpy",
+			"d" : "Rugrats",
+		},
+		"correctAnswer" : "c"
+
+	}];
+
+	function quizStart(){
+		var output = [];
+		console.log(questions);
+
+		questions.forEach(
+			(currentQuestion, questionNumber) => {
+
+        	var answers = [];
+
+    		for(letter in currentQuestion.answers){
+
+        		$(answers).push(letter);
+          			// `<label>
+            	// 	<input type="radio" name="question${questionNumber}" value="${letter}">
+            	// 	${letter} : ${currentQuestion.answers[letter]}
+            	// 	</input>
+          			// </label>`
+        		// );
+        	console.log(answers);
+   			};
+
+   			$(output).push(`<div class="question">${currentQuestion.question}</div><div class="answers">${answers.join('')}</div>`);
+   			// };
+  		});
+		$(quizContainer).html(output);
+  		// $(quizContainer).append(output.join(''));
+  	};
+
+	function showResults(){
+		// select anything in 'answers' class and add it to quizContainer
+		var answerContainer = $(quizContainer).querySelectorAll('.answers');
+		// keeping track of the user's answers
+		var numberCorrect = 0;
+
+		$(questions).each( (currentQuestion, questionNumber) => {
+			var answerContainer = answerContainers[questionNumber];
+			var selector = `input[name=question${questionNumber}]:checked`;
+			var userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+			if(userAnswer===currentQuestion.correctAnswer) {
+				numberCorrect++;
+				answerContainers[questionNumber].style.color = 'lightgreen';
+			}
+			else{
+				answerContainers[questionNumber].style.color = 'red'
+			}
+
+	});
+	};
+
+	// displays quiz on page load
+	quizStart();
+
+	$(answerButton).on('click', showResults);
+
+	
+	console.log(questions);	
 
 
-	<script type="text">
 
 </script>	
 </body>
